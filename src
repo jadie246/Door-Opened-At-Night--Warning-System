@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <windows.h>
+
+float time_checking(){
+	time_t now;
+	struct tm*local; 
+	time (&now);
+	local=localtime (&now);
+	float local_hour= local->tm_hour;
+	return local_hour;
+}
+
+int main(){
+	int door_open=1;
+	while (1){
+		float time=time_checking();
+		
+		if (door_open==1){
+		if (time>=6.00&&time<=24.00){
+			printf ("SAFE!!! DOOR OPENED AT DAYTIME: At %.2f\n", time);
+		}else if(time>0.00&&time<6.00){
+		printf ("WARNING!!! DOOR OPENED AT NIGHT: At %.2f\n", time);
+	}
+	}
+	else {
+		printf ("Door is closed!!!!");
+	}
+	Sleep (3000);
+}
+return 0;
+}
